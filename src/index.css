@@ -1,0 +1,164 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Instrument Sans", system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-pixel: "Silkscreen", monospace;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-cobalt: var(--cobalt);
+  --color-cobalt-foreground: var(--cobalt-foreground);
+  --color-ember: var(--ember);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--surface);
+  --color-sidebar-foreground: var(--foreground);
+  --color-sidebar-border: var(--border);
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+  --radius-2xl: var(--radius);
+  --radius-3xl: var(--radius);
+  --radius-4xl: var(--radius);
+}
+
+/* Plinth tokens. Dark is the primary mode (Letta), light is the alternate. */
+:root {
+  --radius: 2px;
+  --cobalt: #3451e6;
+  --cobalt-foreground: #ffffff;
+  --ember: #de5325;
+
+  --background: #eeeee9;
+  --surface: #f8f8f5;
+  --foreground: #1b1c1a;
+  --card: #f8f8f5;
+  --card-foreground: #1b1c1a;
+  --popover: #f8f8f5;
+  --popover-foreground: #1b1c1a;
+  --primary: #1b1c1a;
+  --primary-foreground: #f8f8f5;
+  --secondary: #dedfd9;
+  --secondary-foreground: #1b1c1a;
+  --muted: #e3e3de;
+  --muted-foreground: #6b6d67;
+  --accent: #e3e3de;
+  --accent-foreground: #1b1c1a;
+  --destructive: #c6471c;
+  --border: #d3d4ce;
+  --input: #c9cac4;
+  --ring: #3451e6;
+  --chart-1: #3451e6;
+  --chart-2: #8a99f0;
+  --chart-3: #de5325;
+  --chart-4: #6b6d67;
+  --chart-5: #b4b5af;
+}
+
+.dark {
+  --background: #1f201e;
+  --surface: #282927;
+  --foreground: #d7d9d3;
+  --card: #282927;
+  --card-foreground: #d7d9d3;
+  --popover: #2d2e2c;
+  --popover-foreground: #d7d9d3;
+  --primary: #c9cdd1;
+  --primary-foreground: #202020;
+  --secondary: #353634;
+  --secondary-foreground: #d7d9d3;
+  --muted: #2f302e;
+  --muted-foreground: #8a8c86;
+  --accent: #353634;
+  --accent-foreground: #d7d9d3;
+  --destructive: #ef6a3a;
+  --border: #383936;
+  --input: #454644;
+  --ring: #4b65ec;
+  --chart-1: #4b65ec;
+  --chart-2: #8a99f0;
+  --chart-3: #ef6a3a;
+  --chart-4: #8a8c86;
+  --chart-5: #4a4b48;
+}
+
+/* Accent themes: swap the one hue that means action. Light value first, dark second.
+   Scoped to any element so the switcher swatches can preview themselves. */
+[data-accent="ember"] { --cobalt: #de5325; --ring: #de5325; --chart-1: #de5325; --chart-2: #f0a080; --chart-3: #3451e6; }
+.dark [data-accent="ember"], .dark[data-accent="ember"] { --cobalt: #ef6a3a; --ring: #ef6a3a; --chart-1: #ef6a3a; --chart-3: #4b65ec; }
+[data-accent="moss"] { --cobalt: #3b7a48; --ring: #3b7a48; --chart-1: #3b7a48; --chart-2: #8fbf98; }
+.dark [data-accent="moss"], .dark[data-accent="moss"] { --cobalt: #5aa868; --ring: #5aa868; --chart-1: #5aa868; }
+[data-accent="violet"] { --cobalt: #6a3fd8; --ring: #6a3fd8; --chart-1: #6a3fd8; --chart-2: #b29cef; }
+.dark [data-accent="violet"], .dark[data-accent="violet"] { --cobalt: #8b6cf0; --ring: #8b6cf0; --chart-1: #8b6cf0; }
+[data-accent="mono"] { --cobalt: #1b1c1a; --ring: #1b1c1a; --chart-1: #1b1c1a; --chart-2: #8a8c86; }
+.dark [data-accent="mono"], .dark[data-accent="mono"] { --cobalt: #d7d9d3; --ring: #d7d9d3; --chart-1: #d7d9d3; --cobalt-foreground: #1f201e; }
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans antialiased;
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    background: var(--cobalt);
+    color: #fff;
+  }
+}
+
+/* The one moving thing on the page. */
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* Toast and overlay motion from tw-animate-css, kept short. */
+.animate-in, .animate-out { animation-duration: 160ms; }
+
+/* Vertical rails: the page grid made visible, Letta-style. */
+.rails {
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to right, var(--border) 1px, transparent 1px);
+  background-size: 1px 100%, 1px 100%;
+  background-position: 33.333% 0, 66.666% 0;
+  background-repeat: no-repeat;
+}
